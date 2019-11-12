@@ -16,7 +16,7 @@ import org.apache.kafka.common.serialization.IntegerSerializer;
 
 public class InputProducer {
 
-    static String CSV_DATA = "./gmm_test_data_unlabeled.csv";
+    static String CSV_DATA = "../gmm_test_data_unlabeled.csv";
     //static String CSV_DATA = "./test_data_unlabeled.csv";
     static String TOPIC = "data-input";
     static String APP_ID = "input-producer";
@@ -49,10 +49,10 @@ public class InputProducer {
             for (CSVRecord csvRecord : parser) {
                 ArrayList<Double> numberRecord = new ArrayList<>();
 
-                for (int i = 0; i < csvRecord.size(); i++){
+                for (int i = 0; i < csvRecord.size(); i++) {
                     String val = csvRecord.get(i);
 
-                    if (NumberUtils.isParsable(val)){
+                    if (NumberUtils.isParsable(val)) {
                         double number = Double.valueOf(val);
                         numberRecord.add(number);
                     } else {
@@ -60,7 +60,7 @@ public class InputProducer {
                     }
                 }
 
-                if (count % (elementsPerWindow / Main.AGGREGATION_WINDOWS) == 0){
+                if (count % (elementsPerWindow / Main.AGGREGATION_WINDOWS) == 0) {
                     timestamp += Main.WINDOW_TIME.toMillis();
                 }
 
